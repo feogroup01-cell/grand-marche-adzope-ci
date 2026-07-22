@@ -75,8 +75,35 @@
     <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Recher un produit...">
 </header>
 
-<div class="banniere">
-    🚚 LIVRAISON RAPIDE A ADZOPE ET ENVIRONS | COMMANDEZ AVANT 16H, LIVRAISON LE JOUR MEME
+<!-- BANDEAU DÉFILANT -->
+<style>
+    .bandeau-defile {
+        background: #ff8c00;
+        color: white;
+        padding: 18px 0;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+    }
+    .bandeau-contenu {
+        display: inline-block;
+        animation: defilement 25s linear infinite;
+    }
+    @keyframes defilement {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+    }
+</style>
+
+<div class="bandeau-defile">
+    <div class="bandeau-contenu">
+        <span style="font-size: 18px; font-weight: bold; text-transform: uppercase; margin-right: 50px;">
+            BIENVENUE SUR LE GRAND MARCHE D'ADZOPE, VOTRE MARCHE EN LIGNE PRES DE VOUS. COMMANDEZ ET FAITES VOUS LIVRER...
+        </span>
+        <span style="font-size: 18px; font-weight: bold; text-transform: uppercase; margin-right: 50px;">
+            BIENVENUE SUR LE GRAND MARCHE D'ADZOPE, VOTRE MARCHE EN LIGNE PRES DE VOUS. COMMANDEZ ET FAITES VOUS LIVRER...
+        </span>
+    </div>
 </div>
 
 <div class="categories" id="categoriesContainer"></div>
@@ -107,7 +134,6 @@ let categorieActive = "Tout";
 let panier = [];
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTBzzj4-pmBXqQwduWJ7ISiY-5jocUud6PZs2n0szxQ_q-be5Cw12LoPEr7JwFU05jdTVwpH-yRvvLA/pub?output=csv";
 const NUMERO_WHATSAPP = "2250501093051"; // <-- MET TON NUMERO
-const FRAIS_LIVRAISON = { "Adzopé": 0, "Abidjan": 1500, "Akoupé": 1000, "Yakassé": 1000, "Autre": 2000 };
 
 function contactVendeur() {
     let message = `Bonjour Grand Marché d'Adzopé 👋%0AJe souhaite vendre mes produits sur votre plateforme.%0A%0A*Nom de ma boutique :* %0A*Type de produits :* %0A*Contact :* `;
