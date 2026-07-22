@@ -64,6 +64,43 @@
 <body>
 
 <header>
+    <style>
+.barre-recherche {
+    padding: 20px;
+    background: white;
+    text-align: center;
+}
+.barre-recherche input {
+    width: 90%;
+    max-width: 600px;
+    padding: 12px 20px;
+    border: 2px solid #28a745;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+}
+</style>
+
+<div class="barre-recherche">
+    <input type="text" id="recherche" onkeyup="chercher()" placeholder="🔍 Rechercher un produit...">
+</div>
+
+<script>
+function chercher() {
+  let input = document.getElementById('recherche');
+  let filtre = input.value.toLowerCase();
+  let produits = document.getElementById('listeProduits').getElementsByClassName('produit');
+
+  for (let i = 0; i < produits.length; i++) {
+    let titre = produits[i].getElementsByTagName('h3')[0];
+    if (titre.innerText.toLowerCase().indexOf(filtre) > -1) {
+      produits[i].style.display = "";
+    } else {
+      produits[i].style.display = "none";
+    }
+  }
+}
+</script>
     <div class="header-top">
         <img class="header-logo" src="https://i.postimg.cc/hPSnQ5ct/Whats-App-Image-2026-07-21-at-08-10-04.jpg" alt="Logo">
         <div class="header-title"><h1>GRAND MARCHE D'ADZOPE</h1></div>
