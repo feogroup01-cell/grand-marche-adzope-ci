@@ -10,57 +10,76 @@
 
         /* HEADER */
         header { background:#009d2a; color:white; padding:15px; position:sticky; top:0; z-index:1000; box-shadow:0 2px 5px rgba(0,0,0,0.2); }
-   .header-top { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:10px; }
-   .header-logo { width:80px; height:80px; border-radius:50%; background:white; object-fit:cover; border:3px solid white; flex-shrink:0; }
-   .header-title { text-align:center; flex-grow:1; }
+  .header-top { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:10px; }
+  .header-logo { width:80px; height:80px; border-radius:50%; background:white; object-fit:cover; border:3px solid white; flex-shrink:0; }
+  .header-title { text-align:center; flex-grow:1; }
         header h1 { font-size:1.8em; margin:0; font-weight:bold; }
         #searchInput { width:90%; max-width:600px; padding:12px 20px; border-radius:25px; border:none; font-size:16px; outline:none; display:block; margin:10px auto 0; }
         #searchResults { position:absolute; left:50%; transform:translateX(-50%); background:white; color:#333; width:90%; max-width:600px; z-index:999; display:none; box-shadow:0 4px 12px rgba(0,0,0,0.15); border-radius:8px; max-height:300px; overflow-y:auto; text-align:left; }
 
         /* ICONE PANIER */
-   .panier-icon { position:fixed; bottom:20px; right:20px; background:#ff6600; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:28px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:2000; }
-   .panier-compteur { position:absolute; top:-5px; right:-5px; background:red; color:white; border-radius:50%; width:25px; height:25px; font-size:14px; display:flex; align-items:center; justify-content:center; font-weight:bold; }
+  .panier-icon { position:fixed; bottom:20px; right:20px; background:#ff6600; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:28px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:2000; }
+  .panier-compteur { position:absolute; top:-5px; right:-5px; background:red; color:white; border-radius:50%; width:25px; height:25px; font-size:14px; display:flex; align-items:center; justify-content:center; font-weight:bold; }
 
         /* POPUP PANIER */
-   .panier-popup { position:fixed; bottom:90px; right:20px; width:90%; max-width:400px; background:white; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.3); z-index:2001; display:none; max-height:70vh; overflow-y:auto; }
-   .panier-header { background:#009d2a; color:white; padding:15px; border-radius:12px 12px 0 0; display:flex; justify-content:space-between; align-items:center; }
-   .panier-body { padding:15px; }
-   .panier-item { display:flex; gap:10px; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px; }
-   .panier-item img { width:50px; height:50px; border-radius:8px; }
-   .panier-item-info { flex-grow:1; }
-   .panier-item-info b { color:#009d2a; }
-   .panier-qte { display:flex; align-items:center; gap:5px; margin-top:5px; }
-   .panier-qte button { width:25px; height:25px; border:none; background:#ddd; border-radius:5px; cursor:pointer; }
-   .btn-commander { background:#25D366; color:white; border:none; width:100%; padding:15px; border-radius:8px; font-size:1.1em; font-weight:bold; cursor:pointer; margin-top:10px; }
-   .btn-vider { background:#ff4444; color:white; border:none; width:100%; padding:10px; border-radius:8px; font-size:0.9em; cursor:pointer; margin-top:5px; }
+  .panier-popup { position:fixed; bottom:90px; right:20px; width:90%; max-width:400px; background:white; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.3); z-index:2001; display:none; max-height:70vh; overflow-y:auto; }
+  .panier-header { background:#009d2a; color:white; padding:15px; border-radius:12px 12px 0 0; display:flex; justify-content:space-between; align-items:center; }
+  .panier-body { padding:15px; }
+  .panier-item { display:flex; gap:10px; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px; }
+  .panier-item img { width:50px; height:50px; border-radius:8px; }
+  .panier-item-info { flex-grow:1; }
+  .panier-item-info b { color:#009d2a; }
+  .panier-qte { display:flex; align-items:center; gap:5px; margin-top:5px; }
+  .panier-qte button { width:25px; height:25px; border:none; background:#ddd; border-radius:5px; cursor:pointer; }
+  .btn-commander { background:#25D366; color:white; border:none; width:100%; padding:15px; border-radius:8px; font-size:1.1em; font-weight:bold; cursor:pointer; margin-top:10px; }
+  .btn-vider { background:#ff4444; color:white; border:none; width:100%; padding:10px; border-radius:8px; font-size:0.9em; cursor:pointer; margin-top:5px; }
 
         /* FORMULAIRE */
-   .form-group { margin-bottom:12px; }
-   .form-group label { display:block; font-weight:bold; margin-bottom:5px; color:#333; font-size:0.9em; }
-   .form-group input,.form-group textarea { width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; font-size:1em; }
-   .form-group textarea { resize:vertical; height:60px; }
+  .form-group { margin-bottom:12px; }
+  .form-group label { display:block; font-weight:bold; margin-bottom:5px; color:#333; font-size:0.9em; }
+  .form-group input,.form-group textarea { width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; font-size:1em; }
+  .form-group textarea { resize:vertical; height:60px; }
 
         /* BANDEAU + CATEGORIES + PRODUITS */
-  .marquee { background: #ffcc00; color: #000; font-weight: bold; padding: 10px 0; font-size: 1em; overflow: hidden; white-space: nowrap; }
-  .marquee p { display: inline-block; padding-left: 100%; animation: defilement 20s linear infinite; }
+ .marquee { background: #ffcc00; color: #000; font-weight: bold; padding: 10px 0; font-size: 1em; overflow: hidden; white-space: nowrap; }
+ .marquee p { display: inline-block; padding-left: 100%; animation: defilement 20s linear infinite; }
         @keyframes defilement { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
-  .categories { background:white; padding:15px; display:flex; gap:10px; overflow-x:auto; justify-content:center; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
-  .cat-btn { padding:8px 18px; border:2px solid #009d2a; background:white; color:#009d2a; border-radius:20px; cursor:pointer; font-weight:bold; white-space:nowrap; transition:0.2s; }
-  .cat-btn.active,.cat-btn:hover { background:#009d2a; color:white; }
+ .categories { background:white; padding:15px; display:flex; gap:10px; overflow-x:auto; justify-content:center; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
+ .cat-btn { padding:8px 18px; border:2px solid #009d2a; background:white; color:#009d2a; border-radius:20px; cursor:pointer; font-weight:bold; white-space:nowrap; transition:0.2s; }
+ .cat-btn.active,.cat-btn:hover { background:#009d2a; color:white; }
         main { padding:20px; max-width:1200px; margin:auto; }
         #produitsContainer { display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:20px; }
-  .product-card { border:1px solid #ddd; border-radius:12px; padding:15px; background:white; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:0.2s; text-align:left; display:flex; flex-direction:column; }
-  .product-card:hover { transform:translateY(-5px); }
-  .product-card img { width:100%; height:180px; object-fit:cover; border-radius:8px; }
-  .product-card h3 { margin:10px 0 5px; color:#009d2a; }
-  .product-card.categorie { font-size:0.8em; color:#ff6600; font-weight:bold; }
-  .product-card b { font-size:1.2em; color:#000; margin-bottom:10px; }
-  .btn-ajouter { background: #009d2a; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 1em; font-weight: bold; cursor: pointer; text-align: center; margin-top: auto; transition: 0.2s; }
-  .btn-ajouter:hover { background: #007d21; }
-        footer { text-align:center; padding:20px; background:#222; color:white; margin-top:30px; }
+ .product-card { border:1px solid #ddd; border-radius:12px; padding:15px; background:white; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:0.2s; text-align:left; display:flex; flex-direction:column; }
+ .product-card:hover { transform:translateY(-5px); }
+ .product-card img { width:100%; height:180px; object-fit:cover; border-radius:8px; }
+ .product-card h3 { margin:10px 0 5px; color:#009d2a; }
+ .product-card.categorie { font-size:0.8em; color:#ff6600; font-weight:bold; }
+ .product-card b { font-size:1.2em; color:#000; margin-bottom:10px; }
+ .btn-ajouter { background: #009d2a; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 1em; font-weight: bold; cursor: pointer; text-align: center; margin-top: auto; transition: 0.2s; }
+ .btn-ajouter:hover { background: #007d21; }
+
+  /* BOUTON VENDEUR AJOUTE */
+ .btn-vendeur {
+        background: #ff6600;
+        color: white;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 8px;
+        font-size: 1.1em;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+        width: 100%;
+        max-width: 400px;
+        transition: 0.2s;
+    }
+ .btn-vendeur:hover { background: #e55a00; }
+
+        footer { text-align:center; padding:30px 20px; background:#222; color:white; margin-top:30px; }
+        footer h3 { color:#ffcc00; margin-bottom:10px; }
 
         @media (max-width: 600px) {
-       .header-logo { width:65px; height:65px; }
+      .header-logo { width:65px; height:65px; }
             header h1 { font-size:1.4em; }
         }
     </style>
@@ -101,7 +120,17 @@
     </div>
 </div>
 
-<footer>© 2026 Grand Marché d'Adzopé</footer>
+<!-- FOOTER AVEC BOUTON VENDEUR -->
+<footer>
+    <h3>Vous êtes producteur ou commerçant?</h3>
+    <p>Rejoignez le Grand Marché d'Adzopé et vendez vos produits en ligne</p>
+
+    <button class="btn-vendeur" onclick="contactVendeur()">
+        📞 CONTACTEZ-NOUS SI VOUS VOULEZ VENDRE SUR NOTRE SITE
+    </button>
+
+    <p style="margin-top:20px; font-size:0.9em;">© 2026 Grand Marché d'Adzopé</p>
+</footer>
 
 <script>
 let produits = [];
@@ -276,6 +305,20 @@ function afficherProduitsFiltres(liste) {
 function goToProduct(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'center' });
     document.getElementById('searchResults').style.display = 'none';
+}
+
+/* FONCTION BOUTON VENDEUR AJOUTEE */
+function contactVendeur() {
+    let message = `*DEMANDE POUR VENDRE SUR LE SITE* 🛒%0A%0A`;
+    message += `Bonjour, je souhaite vendre mes produits sur le Grand Marché d'Adzopé.%0A%0A`;
+    message += `*Nom :* %0A`;
+    message += `*Téléphone :* %0A`;
+    message += `*Produits que je vends :* %0A`;
+    message += `*Commune :* %0A%0A`;
+    message += `Merci de me recontacter.`;
+
+    let url = `https://wa.me/${NUMERO_WHATSAPP}?text=${message}`;
+    window.open(url, '_blank');
 }
 </script>
 
