@@ -5,162 +5,100 @@
     <title>Grand Marché d'Adzopé</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        :root { --bg:#f5f5f5; --card:#fff; --text:#222; --vert:#009d2a; }
-        body.dark { --bg:#1a1a1a; --card:#2a2a2a; --text:#eee; --vert:#00c938; }
-
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family: Arial, sans-serif; background: var(--bg); color:var(--text); transition:0.3s; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; }
 
         /* HEADER */
-        header { background:var(--vert); color:white; padding:15px; position:sticky; top:0; z-index:1000; box-shadow:0 2px 5px rgba(0,0,0,0.2); }
- .header-top { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:10px; }
- .header-logo { width:80px; height:80px; border-radius:50%; background:white; object-fit:cover; border:3px solid white; flex-shrink:0; }
- .header-title { text-align:center; flex-grow:1; }
+        header { background:#009d2a; color:white; padding:15px; position:sticky; top:0; z-index:1000; box-shadow:0 2px 5px rgba(0,0,0,0.2); }
+   .header-top { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:10px; }
+   .header-logo { width:80px; height:80px; border-radius:50%; background:white; object-fit:cover; border:3px solid white; flex-shrink:0; }
+   .header-title { text-align:center; flex-grow:1; }
         header h1 { font-size:1.8em; margin:0; font-weight:bold; }
- .header-actions { display:flex; gap:10px; }
- .btn-header { background:white; color:var(--vert); border:none; padding:8px 12px; border-radius:20px; cursor:pointer; font-weight:bold; font-size:0.9em; }
- .btn-dark { background:none; border:2px solid white; color:white; padding:8px 12px; border-radius:20px; cursor:pointer; font-weight:bold; }
         #searchInput { width:90%; max-width:600px; padding:12px 20px; border-radius:25px; border:none; font-size:16px; outline:none; display:block; margin:10px auto 0; }
+        #searchResults { position:absolute; left:50%; transform:translateX(-50%); background:white; color:#333; width:90%; max-width:600px; z-index:999; display:none; box-shadow:0 4px 12px rgba(0,0,0,0.15); border-radius:8px; max-height:300px; overflow-y:auto; text-align:left; }
 
-        /* BANNIERE PROMO */
- .banniere { background: linear-gradient(90deg, #ff6600, #ffcc00); color:#000; padding:20px; text-align:center; font-weight:bold; font-size:1.2em; }
+        /* ICONE PANIER */
+   .panier-icon { position:fixed; bottom:20px; right:20px; background:#ff6600; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:28px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:2000; }
+   .panier-compteur { position:absolute; top:-5px; right:-5px; background:red; color:white; border-radius:50%; width:25px; height:25px; font-size:14px; display:flex; align-items:center; justify-content:center; font-weight:bold; }
 
-        /* PANIER */
- .panier-icon { position:fixed; bottom:20px; right:20px; background:#ff6600; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:28px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:2000; }
- .panier-compteur { position:absolute; top:-5px; right:-5px; background:red; color:white; border-radius:50%; width:25px; height:25px; font-size:14px; display:flex; align-items:center; justify-content:center; font-weight:bold; }
- .panier-popup { position:fixed; bottom:90px; right:20px; width:90%; max-width:400px; background:var(--card); border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.3); z-index:2001; display:none; max-height:70vh; overflow-y:auto; }
- .panier-header { background:var(--vert); color:white; padding:15px; border-radius:12px 12px 0 0; display:flex; justify-content:space-between; align-items:center; }
- .panier-body { padding:15px; }
- .panier-item { display:flex; gap:10px; margin-bottom:12px; border-bottom:1px solid #ccc; padding-bottom:10px; }
- .panier-item img { width:50px; height:50px; border-radius:8px; }
- .form-group { margin-bottom:12px; }
- .form-group label { display:block; font-weight:bold; margin-bottom:5px; font-size:0.9em; }
- .form-group input,.form-group textarea,.form-group select { width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; font-size:1em; background:var(--bg); color:var(--text); }
- .btn-commander { background:#25D366; color:white; border:none; width:100%; padding:15px; border-radius:8px; font-size:1.1em; font-weight:bold; cursor:pointer; margin-top:10px; }
+        /* POPUP PANIER */
+   .panier-popup { position:fixed; bottom:90px; right:20px; width:90%; max-width:400px; background:white; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.3); z-index:2001; display:none; max-height:70vh; overflow-y:auto; }
+   .panier-header { background:#009d2a; color:white; padding:15px; border-radius:12px 12px 0 0; display:flex; justify-content:space-between; align-items:center; }
+   .panier-body { padding:15px; }
+   .panier-item { display:flex; gap:10px; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px; }
+   .panier-item img { width:50px; height:50px; border-radius:8px; }
+   .panier-item-info { flex-grow:1; }
+   .panier-item-info b { color:#009d2a; }
+   .panier-qte { display:flex; align-items:center; gap:5px; margin-top:5px; }
+   .panier-qte button { width:25px; height:25px; border:none; background:#ddd; border-radius:5px; cursor:pointer; }
+   .btn-commander { background:#25D366; color:white; border:none; width:100%; padding:15px; border-radius:8px; font-size:1.1em; font-weight:bold; cursor:pointer; margin-top:10px; }
+   .btn-vider { background:#ff4444; color:white; border:none; width:100%; padding:10px; border-radius:8px; font-size:0.9em; cursor:pointer; margin-top:5px; }
 
-        /* PRODUITS */
- .categories { background:var(--card); padding:15px; display:flex; gap:10px; overflow-x:auto; justify-content:center; }
- .cat-btn { padding:8px 18px; border:2px solid var(--vert); background:var(--card); color:var(--vert); border-radius:20px; cursor:pointer; font-weight:bold; white-space:nowrap; }
- .cat-btn.active { background:var(--vert); color:white; }
+        /* FORMULAIRE */
+   .form-group { margin-bottom:12px; }
+   .form-group label { display:block; font-weight:bold; margin-bottom:5px; color:#333; font-size:0.9em; }
+   .form-group input,.form-group textarea { width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; font-size:1em; }
+   .form-group textarea { resize:vertical; height:60px; }
+
+        /* BANDEAU + CATEGORIES + PRODUITS */
+  .marquee { background: #ffcc00; color: #000; font-weight: bold; padding: 10px 0; font-size: 1em; overflow: hidden; white-space: nowrap; }
+  .marquee p { display: inline-block; padding-left: 100%; animation: defilement 20s linear infinite; }
+        @keyframes defilement { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+  .categories { background:white; padding:15px; display:flex; gap:10px; overflow-x:auto; justify-content:center; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
+  .cat-btn { padding:8px 18px; border:2px solid #009d2a; background:white; color:#009d2a; border-radius:20px; cursor:pointer; font-weight:bold; white-space:nowrap; transition:0.2s; }
+  .cat-btn.active,.cat-btn:hover { background:#009d2a; color:white; }
         main { padding:20px; max-width:1200px; margin:auto; }
         #produitsContainer { display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:20px; }
- .product-card { border:1px solid #ddd; border-radius:12px; padding:15px; background:var(--card); box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; }
- .product-card img { width:100%; height:180px; object-fit:cover; border-radius:8px; }
- .product-card h3 { margin:10px 0 5px; color:var(--vert); }
- .btn-ajouter { background: var(--vert); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 1em; font-weight: bold; cursor: pointer; margin-top: auto; }
-
-        /* FOOTER VENDEUR */
- .footer-vendeur { background:#ff6600; color:white; text-align:center; padding:25px 15px; margin-top:30px; }
- .btn-vendeur { background:white; color:#ff6600; border:none; padding:15px 30px; border-radius:30px; font-size:1.1em; font-weight:bold; cursor:pointer; margin-top:10px; }
-        footer { text-align:center; padding:20px; background:#222; color:white; }
+  .product-card { border:1px solid #ddd; border-radius:12px; padding:15px; background:white; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:0.2s; text-align:left; display:flex; flex-direction:column; }
+  .product-card:hover { transform:translateY(-5px); }
+  .product-card img { width:100%; height:180px; object-fit:cover; border-radius:8px; }
+  .product-card h3 { margin:10px 0 5px; color:#009d2a; }
+  .product-card.categorie { font-size:0.8em; color:#ff6600; font-weight:bold; }
+  .product-card b { font-size:1.2em; color:#000; margin-bottom:10px; }
+  .btn-ajouter { background: #009d2a; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 1em; font-weight: bold; cursor: pointer; text-align: center; margin-top: auto; transition: 0.2s; }
+  .btn-ajouter:hover { background: #007d21; }
+        footer { text-align:center; padding:20px; background:#222; color:white; margin-top:30px; }
 
         @media (max-width: 600px) {
-     .header-logo { width:65px; height:65px; }
-            header h1 { font-size:1.3em; }
-     .header-actions { flex-direction:column; }
+       .header-logo { width:65px; height:65px; }
+            header h1 { font-size:1.4em; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <style>
-.barre-recherche {
-    padding: 20px;
-    background: white;
-    text-align: center;
-}
-.barre-recherche input {
-    width: 90%;
-    max-width: 600px;
-    padding: 12px 20px;
-    border: 2px solid #28a745;
-    border-radius: 25px;
-    font-size: 16px;
-    outline: none;
-}
-</style>
-
-<div class="barre-recherche">
-    <input type="text" id="recherche" onkeyup="chercher()" placeholder="🔍 Rechercher un produit...">
-</div>
-
-<script>
-function chercher() {
-  let input = document.getElementById('recherche');
-  let filtre = input.value.toLowerCase();
-  let produits = document.getElementById('listeProduits').getElementsByClassName('produit');
-
-  for (let i = 0; i < produits.length; i++) {
-    let titre = produits[i].getElementsByTagName('h3')[0];
-    if (titre.innerText.toLowerCase().indexOf(filtre) > -1) {
-      produits[i].style.display = "";
-    } else {
-      produits[i].style.display = "none";
-    }
-  }
-}
-</script>
     <div class="header-top">
-        <img class="header-logo" src="https://i.postimg.cc/hPSnQ5ct/Whats-App-Image-2026-07-21-at-08-10-04.jpg" alt="Logo">
+        <img class="header-logo" src="https://i.postimg.cc/hPSnQ5ct/Whats-App-Image-2026-07-21-at-08-10-04.jpg" alt="Logo Gauche">
         <div class="header-title"><h1>GRAND MARCHE D'ADZOPE</h1></div>
-        <div class="header-actions">
-            <button class="btn-header" onclick="contactVendeur()">Devenir Vendeur</button>
-            <button class="btn-dark" onclick="toggleDark()">🌙</button>
-        </div>
+        <img class="header-logo" src="https://i.postimg.cc/hPSnQ5ct/Whats-App-Image-2026-07-21-at-08-10-04.jpg" alt="Logo Droite">
     </div>
     <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Recher un produit...">
+    <div id="searchResults"></div>
 </header>
 
-<!-- BANDEAU DÉFILANT -->
-<style>
-    .bandeau-defile {
-        background: #ff8c00;
-        color: white;
-        padding: 18px 0;
-        overflow: hidden;
-        white-space: nowrap;
-        width: 100%;
-    }
-    .bandeau-contenu {
-        display: inline-block;
-        animation: defilement 25s linear infinite;
-    }
-    @keyframes defilement {
-        0% { transform: translateX(100%); }
-        100% { transform: translateX(-100%); }
-    }
-</style>
-
-<div class="bandeau-defile">
-    <div class="bandeau-contenu">
-        <span style="font-size: 18px; font-weight: bold; text-transform: uppercase; margin-right: 50px;">
-            BIENVENUE SUR LE GRAND MARCHE D'ADZOPE, VOTRE MARCHE EN LIGNE PRES DE VOUS. COMMANDEZ ET FAITES VOUS LIVRER...
-        </span>
-        <span style="font-size: 18px; font-weight: bold; text-transform: uppercase; margin-right: 50px;">
-            BIENVENUE SUR LE GRAND MARCHE D'ADZOPE, VOTRE MARCHE EN LIGNE PRES DE VOUS. COMMANDEZ ET FAITES VOUS LIVRER...
-        </span>
-    </div>
-</div>
-
+<div class="marquee"><p>BIENVENUE AU GRAND MARCHE D'ADZOPE, VOTRE MARCHE EN LIGNE PRES DE CHEZ VOUS. COMMANDEZ ET FAITES VOUS LIVRER...</p></div>
 <div class="categories" id="categoriesContainer"></div>
 
 <main>
     <div id="produitsContainer">Chargement des produits...</div>
 </main>
 
-<div class="panier-icon" onclick="togglePanier()">🛒<span class="panier-compteur" id="panierCompteur">0</span></div>
-
-<div class="panier-popup" id="panierPopup">
-    <div class="panier-header"><h3>Votre Panier</h3><span style="cursor:pointer; font-size:24px;" onclick="togglePanier()">×</span></div>
-    <div class="panier-body" id="panierBody"><p>Votre panier est vide</p></div>
+<!-- BOUTON PANIER FLOTTANT -->
+<div class="panier-icon" onclick="togglePanier()">
+    🛒
+    <span class="panier-compteur" id="panierCompteur">0</span>
 </div>
 
-<!-- SECTION VENDEUR -->
-<div class="footer-vendeur">
-    <h2>Vous vendez des produits?</h2>
-    <p>Rejoignez le Grand Marché d'Adzopé et vendez à des milliers de clients</p>
-    <button class="btn-vendeur" onclick="contactVendeur()">📲 Contactez-nous sur WhatsApp</button>
+<!-- POPUP PANIER + FORMULAIRE -->
+<div class="panier-popup" id="panierPopup">
+    <div class="panier-header">
+        <h3>Votre Panier</h3>
+        <span style="cursor:pointer; font-size:24px;" onclick="togglePanier()">×</span>
+    </div>
+    <div class="panier-body" id="panierBody">
+        <p>Votre panier est vide</p>
+    </div>
 </div>
 
 <footer>© 2026 Grand Marché d'Adzopé</footer>
@@ -170,23 +108,20 @@ let produits = [];
 let categorieActive = "Tout";
 let panier = [];
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTBzzj4-pmBXqQwduWJ7ISiY-5jocUud6PZs2n0szxQ_q-be5Cw12LoPEr7JwFU05jdTVwpH-yRvvLA/pub?output=csv";
-const NUMERO_WHATSAPP = "2250501093051"; // <-- MET TON NUMERO
-
-function contactVendeur() {
-    let message = `Bonjour Grand Marché d'Adzopé 👋%0AJe souhaite vendre mes produits sur votre plateforme.%0A%0A*Nom de ma boutique :* %0A*Type de produits :* %0A*Contact :* `;
-    window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${message}`, '_blank');
-}
+const NUMERO_WHATSAPP = "2250501093051"; // <-- MET TON NUMERO ICI
 
 fetch(SHEET_URL).then(res => res.text()).then(csv => {
     const lignes = csv.split('\n');
     produits = lignes.slice(1).filter(l => l.trim()!= "").map(ligne => {
         let parts = ligne.split(',');
-        return { id: parts[0], nom: parts[1], prix: parseInt(parts[2]), description: parts.slice(3, parts.length - 3).join(','), photo: parts[parts.length - 3], categorie: parts[parts.length - 2], disponible: parts[parts.length - 1] };
+        return {
+            id: parts[0], nom: parts[1], prix: parseInt(parts[2]),
+            description: parts.slice(3, parts.length - 3).join(','),
+            photo: parts[parts.length - 3], categorie: parts[parts.length - 2], disponible: parts[parts.length - 1]
+        };
     });
     afficherCategories(); afficherProduits();
 });
-
-function toggleDark() { document.body.classList.toggle('dark'); }
 
 function afficherCategories() {
     const container = document.getElementById('categoriesContainer');
@@ -194,40 +129,80 @@ function afficherCategories() {
     container.innerHTML = categories.map(cat => `<button class="cat-btn ${cat == 'Tout'? 'active' : ''}" onclick="filtrerCategorie('${cat}')">${cat}</button>`).join('');
 }
 
-function filtrerCategorie(cat) { categorieActive = cat; document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active')); event.target.classList.add('active'); afficherProduits(); }
+function filtrerCategorie(cat) {
+    categorieActive = cat;
+    document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active'); afficherProduits();
+}
 
 function ajouterAuPanier(id) {
     let produit = produits.find(p => p.id == id);
     let item = panier.find(p => p.id == id);
-    if(item) { item.qte++; } else { panier.push({id: produit.id, nom: produit.nom, prix: produit.prix, photo: produit.photo, qte: 1}); }
+    if(item) { item.qte++; }
+    else { panier.push({id: produit.id, nom: produit.nom, prix: produit.prix, photo: produit.photo, qte: 1}); }
     majCompteurPanier(); afficherPanier();
 }
 
-function retirerDuPanier(id) { let item = panier.find(p => p.id == id); if(item.qte > 1) { item.qte--; } else { panier = panier.filter(p => p.id!= id); } majCompteurPanier(); afficherPanier(); }
-function majCompteurPanier() { document.getElementById('panierCompteur').innerText = panier.reduce((sum, item) => sum + item.qte, 0); }
-function togglePanier() { let popup = document.getElementById('panierPopup'); popup.style.display = popup.style.display == 'block'? 'none' : 'block'; afficherPanier(); }
+function retirerDuPanier(id) {
+    let item = panier.find(p => p.id == id);
+    if(item.qte > 1) { item.qte--; }
+    else { panier = panier.filter(p => p.id!= id); }
+    majCompteurPanier(); afficherPanier();
+}
+
+function majCompteurPanier() {
+    let total = panier.reduce((sum, item) => sum + item.qte, 0);
+    document.getElementById('panierCompteur').innerText = total;
+}
+
+function togglePanier() {
+    let popup = document.getElementById('panierPopup');
+    popup.style.display = popup.style.display == 'block'? 'none' : 'block';
+    afficherPanier();
+}
 
 function afficherPanier() {
     let body = document.getElementById('panierBody');
     if(panier.length == 0) { body.innerHTML = "<p>Votre panier est vide</p>"; return; }
-    let sousTotal = panier.reduce((sum, item) => sum + (item.prix * item.qte), 0);
-    body.innerHTML = panier.map(item => `<div class="panier-item"><img src="${item.photo}"><div><b>${item.nom}</b><br>${item.prix} FCFA x ${item.qte}<div style="margin-top:5px;"><button onclick="retirerDuPanier('${item.id}')">-</button> ${item.qte} <button onclick="ajouterAuPanier('${item.id}')">+</button></div></div></div>`).join('') + `
-        <div class="form-group"><label>Nom et Prénoms *</label><input type="text" id="clientNom"></div>
-        <div class="form-group"><label>Téléphone *</label><input type="tel" id="clientTel"></div>
-        <div class="form-group"><label>Adresse *</label><textarea id="clientAdresse"></textarea></div>
-        <div class="form-group"><label>Commune *</label><select id="clientCommune" onchange="calculerTotal()">${Object.keys(FRAIS_LIVRAISON).map(c => `<option value="${c}">${c}</option>`).join('')}</select></div>
-        <div id="recapTotal" style="font-weight:bold; text-align:right; margin:10px 0;"></div>
-        <button class="btn-commander" onclick="commanderPanier()">Commander sur WhatsApp</button>
-    `;
-    calculerTotal();
-}
 
-function calculerTotal() {
-    let sousTotal = panier.reduce((sum, item) => sum + (item.prix * item.qte), 0);
-    let commune = document.getElementById('clientCommune')?.value || "Adzopé";
-    let frais = FRAIS_LIVRAISON[commune] || FRAIS_LIVRAISON["Autre"];
-    let total = sousTotal + frais;
-    document.getElementById('recapTotal').innerHTML = `Sous-total: ${sousTotal} FCFA<br>Livraison: ${frais} FCFA<br><h3>TOTAL: ${total} FCFA</h3>`;
+    let total = panier.reduce((sum, item) => sum + (item.prix * item.qte), 0);
+    body.innerHTML = panier.map(item => `
+        <div class="panier-item">
+            <img src="${item.photo}">
+            <div class="panier-item-info">
+                <b>${item.nom}</b><br>
+                ${item.prix} FCFA x ${item.qte} = ${item.prix * item.qte} FCFA
+                <div class="panier-qte">
+                    <button onclick="retirerDuPanier('${item.id}')">-</button>
+                    <span>${item.qte}</span>
+                    <button onclick="ajouterAuPanier('${item.id}')">+</button>
+                </div>
+            </div>
+        </div>
+    `).join('') + `
+        <h3 style="text-align:right; margin:10px 0;">Total: ${total} FCFA</h3>
+
+        <!-- FORMULAIRE CLIENT -->
+        <div class="form-group">
+            <label>Nom et Prénoms *</label>
+            <input type="text" id="clientNom" placeholder="Ex: ADOU RUTH">
+        </div>
+        <div class="form-group">
+            <label>Téléphone *</label>
+            <input type="tel" id="clientTel" placeholder="Ex: 07 01 02 03 04">
+        </div>
+        <div class="form-group">
+            <label>Adresse de livraison *</label>
+            <textarea id="clientAdresse" placeholder="Ex: Quartier Résidentiel, près de la pharmacie"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Commune</label>
+            <input type="text" id="clientCommune" placeholder="Ex: Adzopé">
+        </div>
+
+        <button class="btn-commander" onclick="commanderPanier()">Commander sur WhatsApp</button>
+        <button class="btn-vider" onclick="viderPanier()">Vider le panier</button>
+    `;
 }
 
 function commanderPanier() {
@@ -235,30 +210,73 @@ function commanderPanier() {
     let tel = document.getElementById('clientTel').value;
     let adresse = document.getElementById('clientAdresse').value;
     let commune = document.getElementById('clientCommune').value;
-    if(nom == "" || tel == "" || adresse == "") { alert("Remplir Nom, Téléphone et Adresse"); return; }
-    let sousTotal = panier.reduce((sum, item) => sum + (item.prix * item.qte), 0);
-    let frais = FRAIS_LIVRAISON[commune] || FRAIS_LIVRAISON["Autre"];
-    let total = sousTotal + frais;
+
+    if(nom == "" || tel == "" || adresse == "") {
+        alert("Veuillez remplir Nom, Téléphone et Adresse svp");
+        return;
+    }
+
+    let total = panier.reduce((sum, item) => sum + (item.prix * item.qte), 0);
     let listeProduits = panier.map(item => `• ${item.nom} x${item.qte} = ${item.prix * item.qte} FCFA`).join('%0A');
-    let message = `*NOUVELLE COMMANDE V2* 🛒%0A%0A*Client :* ${nom}%0A*Tél :* ${tel}%0A*Adresse :* ${adresse}%0A*Commune :* ${commune}%0A%0A*COMMANDES :*%0A${listeProduits}%0A%0A*Sous-total :* ${sousTotal} FCFA%0A*Livraison :* ${frais} FCFA%0A*TOTAL : ${total} FCFA*%0A%0AMerci.`;
-    window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${message}`, '_blank');
-    panier = []; majCompteurPanier(); togglePanier();
+
+    let message = `*NOUVELLE COMMANDE* 🛒%0A%0A`;
+    message += `*Client :* ${nom}%0A`;
+    message += `*Tél :* ${tel}%0A`;
+    message += `*Adresse :* ${adresse}%0A`;
+    message += `*Commune :* ${commune}%0A%0A`;
+    message += `*COMMANDES :*%0A${listeProduits}%0A%0A`;
+    message += `*TOTAL : ${total} FCFA*%0A%0A`;
+    message += `Merci de me confirmer.`;
+
+    let url = `https://wa.me/${NUMERO_WHATSAPP}?text=${message}`;
+    window.open(url, '_blank');
+    viderPanier();
+    togglePanier();
 }
+
+function viderPanier() { panier = []; majCompteurPanier(); afficherPanier(); }
 
 function afficherProduits() {
     const container = document.getElementById('produitsContainer');
-    let produitsFiltres = produits.filter(p => p.disponible.trim() == "Oui");
+    let produitsFiltres = produits.filter(p => p.disponible && p.disponible.trim() == "Oui");
     if(categorieActive!= "Tout") { produitsFiltres = produitsFiltres.filter(p => p.categorie == categorieActive); }
+    if(produitsFiltres.length == 0) { container.innerHTML = "<p style='text-align:center; grid-column:1/-1;'>Aucun produit disponible</p>"; return; }
+
     container.innerHTML = produitsFiltres.map(p => `
-        <div class="product-card">
-            <img src="${p.photo}"><span style="color:orange; font-size:0.8em;">${p.categorie}</span>
-            <h3>${p.nom}</h3><p>${p.description}</p><b>${p.prix} FCFA</b>
+        <div id="${p.id}" class="product-card">
+            <img src="${p.photo}" onerror="this.src='https://via.placeholder.com/250x180?text=Pas+d'image'">
+            <span class="categorie">${p.categorie}</span>
+            <h3>${p.nom}</h3>
+            <p>${p.description}</p>
+            <b>${p.prix} FCFA</b>
             <button class="btn-ajouter" onclick="ajouterAuPanier('${p.id}')">Ajouter au panier</button>
         </div>
     `).join('');
 }
 
-function searchProducts() { /* meme fonction que V1 */ }
+function searchProducts() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let resultsDiv = document.getElementById('searchResults');
+    if(input.length < 2) { resultsDiv.style.display = 'none'; afficherProduits(); return; }
+    let filtres = produits.filter(p => p.nom.toLowerCase().includes(input) && p.disponible.trim() == "Oui");
+    if(categorieActive!= "Tout") { filtres = filtres.filter(p => p.categorie == categorieActive); }
+    resultsDiv.innerHTML = filtres.map(p => `<div onclick="goToProduct('${p.id}')" style="display:flex; padding:12px; border-bottom:1px solid #eee; gap:10px; cursor:pointer;"><img src="${p.photo}" style="width:50px; height:50px; border-radius:8px;"><div><b>${p.nom}</b> - ${p.prix} FCFA</div></div>`).join('');
+    resultsDiv.style.display = filtres.length? 'block' : 'none'; afficherProduitsFiltres(filtres);
+}
+
+function afficherProduitsFiltres(liste) {
+    document.getElementById('produitsContainer').innerHTML = liste.map(p => `
+        <div id="${p.id}" class="product-card">
+            <img src="${p.photo}"><span class="categorie">${p.categorie}</span><h3>${p.nom}</h3><p>${p.description}</p><b>${p.prix} FCFA</b>
+            <button class="btn-ajouter" onclick="ajouterAuPanier('${p.id}')">Ajouter au panier</button>
+        </div>
+    `).join('');
+}
+
+function goToProduct(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'center' });
+    document.getElementById('searchResults').style.display = 'none';
+}
 </script>
 
 </body>
